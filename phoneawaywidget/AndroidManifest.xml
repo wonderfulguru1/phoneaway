@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.paw"
+      android:versionCode="1"
+      android:versionName="1.0">
+    <application android:icon="@drawable/icon" android:label="@string/app_name">
+	<!-- Declare Widget -->
+		<receiver android:name=".PhoneAwayWidget" android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+			</intent-filter>
+			<meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_info" />
+		 </receiver>
+	<!-- Declare Widget -->
+	
+	<activity android:name=".ui.PreferenceActivity">
+    		<intent-filter>
+				<action android:name="com.paw.ui.ACTION_WIDGET_PREF_BTN"/>
+			</intent-filter>
+		</activity>
+	<activity android:name=".ui.PreferenceActivity"/>
+    </application>
+    
+    <!-- Phone State Handling -->
+    <receiver android:name=".handler.CallControl">
+		<intent-filter>
+			<action android:name="android.intent.action.PHONE_STATE"/>
+		</intent-filter>
+	</receiver>
+    <!-- Phone State Handling -->
+     
+    <uses-sdk android:minSdkVersion="7" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+	<uses-permission android:name="android.permission.MODIFY_PHONE_STATE"/>
+	<uses-permission android:name="android.permission.CALL_PHONE"/>
+<uses-permission android:name="android.permission.SEND_SMS"/>
+</manifest> 
